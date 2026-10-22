@@ -1,32 +1,106 @@
-# React + TypeScript + Vite
+# Nova AI — Real-Time Voice Assistant
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Nova AI is a browser-based AI voice assistant built with React, TypeScript, Node.js, and LiveKit. It provides a web interface for real-time voice conversations with an AI agent.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Real-time audio communication using LiveKit
+- Browser microphone access and audio playback
+- Animated assistant interface and voice-state visualizer
+- Microphone mute and unmute controls
+- Backend API for generating room access tokens
+- Agent dispatch integration
+- Environment-based configuration for credentials
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Technology | Purpose |
+|---|---|
+| React | User interface |
+| TypeScript | Type-safe frontend development |
+| Vite | Frontend development and build tooling |
+| Node.js | Backend runtime |
+| Express | API server |
+| LiveKit | Real-time audio and agent communication |
 
-## Expanding the Oxlint configuration
+## Project Structure
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```text
+nova-ai-voice-assistant/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── App.tsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.tsx
+├── server.mjs
+├── package.json
+├── pnpm-lock.yaml
+├── vite.config.ts
+└── README.md
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+The LiveKit agent runs from a separate project directory.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js
+- pnpm
+- A LiveKit Cloud project
+- A configured LiveKit agent
+
+### Install dependencies
+
+```bash
+pnpm install
+```
+
+### Configure environment variables
+
+Create a `.env` file in the project root:
+
+```env
+LIVEKIT_URL=your_livekit_server_url
+LIVEKIT_API_KEY=your_api_key
+LIVEKIT_API_SECRET=your_api_secret
+LIVEKIT_AGENT_NAME=my-agent
+LIVEKIT_AGENT_DEPLOYMENT=your_development_deployment
+```
+
+Use your own LiveKit credentials locally. Never commit real credentials or tokens.
+
+### Start the backend
+
+```bash
+node server.mjs
+```
+
+### Start the frontend
+
+In a separate terminal:
+
+```bash
+pnpm dev
+```
+
+Configure the LiveKit agent separately and start it according to its project instructions. The backend deployment setting must match the active development deployment when targeting it explicitly.
+
+## Security
+
+- Keep `.env` and `.env.local` out of Git.
+- Never expose API secrets or access tokens in frontend code.
+- Use HTTPS and secure environment variables when deploying.
+
+## Future Improvements
+
+- Improve conversational intelligence and error handling
+- Add automated tests
+- Deploy a public demo
+- Improve mobile responsiveness and accessibility
+
+## Project Status
+
+Working prototype — active development.
