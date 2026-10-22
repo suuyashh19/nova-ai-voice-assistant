@@ -7,7 +7,7 @@ import { randomUUID } from 'node:crypto';
 const app = express();
 app.use(express.json());
 
-const port = 3001;
+const port = Number(process.env.PORT) || 3001;
 
 const {
   LIVEKIT_URL,
@@ -94,7 +94,7 @@ app.post('/api/token', async (_req, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Nova AI backend running at http://localhost:${port}`);
   console.log('Agent name:', LIVEKIT_AGENT_NAME);
   console.log('Target deployment:', LIVEKIT_AGENT_DEPLOYMENT || 'production');
