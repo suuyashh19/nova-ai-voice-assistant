@@ -1,0 +1,9 @@
+
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://nova-ai-backend-yp8j.onrender.com/api/:path*"
+    }
+  ]
+}
